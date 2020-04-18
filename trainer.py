@@ -11,24 +11,27 @@ class Trainer:
   def __init__(self, name, characters):
     self.name = name
     self.characters = characters
+    self.characters_names = [character.name for character in self.characters]
     if len(self.characters) > 6:
       self.characters = self.characters[0:6]
-      
+      self.characters_names = self.characters_names[0:6]
     self.potion = ["strawberry", "bananna", "chocolatte", "cranberry", "apple", "mango"]
     
   def __repr__(self):
-    return "{} have chosen theese warriors: \n{}\n".format(self.name, self.characters)
+    return "{} have chosen theese warriors: \n{}\n".format(self.name, self.characters_names)
     
-  def activate_warrior(self, warrior):
-    self.active = warrior
-    self.break_ = False
-    if self.active.name in self.characters:
-      print("{} is now active for trainer {}\n".format(self.active.name.upper(), self.name.upper()))
-      return
-    else:
-      print("You can not activate a warrior from outside your list!")
-      self.break_ = True 
-    return
+  def activate_warrior(self):
+    print("Activate a warrior from your list, {}! \n".format(self.name))
+    self.active = None
+    user_input = input("Type a warrior: ")
+    for warrior in self.characters:
+      if warrior.name == user_input:
+        self.active = warrior
+        print("{} is now active for trainer {}\n".format(self.active.name.upper(), self.name.upper()))
+        return
+      else:
+        print("You must activate a warrior from your list. Try again! \n")
+        return
     
   def attack_trainer(self, opponent):
     self.opponent = opponent

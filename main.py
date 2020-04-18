@@ -62,17 +62,18 @@ machoke = Pokemon("Machoke", 1, "Fighting", 160, 160, False)
 ##### Instances  #####
 ######################
 
-marcel = Trainer("Marcel", [squirtle.name, machoke.name, primeape.name, charmander.name, sandshrew.name, sandslash.name, raichu.name])
-#print(marcel)
+#marcel = Trainer("Marcel", [squirtle, machoke, primeape, charmander, sandshrew, sandslash, raichu])
+marcel = Trainer("Marcel", [machoke, sandshrew, sandslash, arbok, ekans, meowth, mankey])
+print(marcel)
 
-jakub = Trainer("Jakub", [raticate.name, venusaur.name, squirtle.name, blastoise.name, mankey.name, caterpie.name, diglett.name])
-#print(jakub)
+jakub = Trainer("Jakub", [raticate, venusaur, squirtle, blastoise, mankey, caterpie, diglett])
+print(jakub)
 
 ######################
 ##### Play below #####
 ######################
 
-marcel.activate_warrior(squirtle)
-jakub.activate_warrior(caterpie)
+marcel.activate_warrior()
+#jakub.activate_warrior()
 
-marcel.attack_trainer(jakub)
+#marcel.attack_trainer(jakub)
