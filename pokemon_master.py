@@ -1,6 +1,5 @@
 """
-Pokemon Game
-Codecademy exercise project
+Pokemon Game - backup of original script
 Author: Marcel Ruzicka, ruzicka_marcel@yahoo.com, april-2020
 """
 
