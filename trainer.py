@@ -37,7 +37,7 @@ class Trainer:
         print("Use quotation marks \"\" for inputs")
 
           
-    def attack_trainer(self, opponent):
+  def attack_trainer(self, opponent):
     self.opponent = opponent
     
     pokemon = Pokemon(self.active.name, self.active.level, self.active.type_of, self.active.max_health, self.active.current_health, self.active.knocked_out)
