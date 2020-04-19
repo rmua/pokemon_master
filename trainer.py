@@ -24,19 +24,20 @@ class Trainer:
     print("Activate a warrior from your list, {}! \n".format(self.name))
     self.active = None
     while self.active == None:
-      user_input = input("Type a warrior: ")
-      for warrior in self.characters:
-        if warrior.name == user_input:
-          self.active = warrior
-          print("{} is now active for trainer {}\n".format(self.active.name.upper(), self.name.upper()))
-          break
-      else:
-        print("You must activate a warrior from your list. Try again! \n")
+      try:
+        user_input = input("Type in a warrior: ")
+        for warrior in self.characters:
+          if warrior.name == user_input:
+            self.active = warrior
+            print("{} is now active for trainer {}\n".format(self.active.name.upper(), self.name.upper()))
+            break
+        else:
+          print("You must activate a warrior from your list. Try again! \n")
+      except NameError:
+        print("Use quotation marks \"\" for inputs")
 
           
-
-    
-  def attack_trainer(self, opponent):
+    def attack_trainer(self, opponent):
     self.opponent = opponent
     
     pokemon = Pokemon(self.active.name, self.active.level, self.active.type_of, self.active.max_health, self.active.current_health, self.active.knocked_out)
