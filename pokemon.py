@@ -76,3 +76,6 @@ class Pokemon:
       self.max_health = self.max_health + 100
       print("{} grew up to level {}.".format(self.name, self.level))
     return self.max_health, self.level
+    
+  def get_current_health(self):
+    return self.current_health

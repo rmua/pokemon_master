@@ -76,4 +76,5 @@ print(jakub)
 marcel.activate_warrior()
 jakub.activate_warrior()
 
-#marcel.attack_trainer(jakub)
+marcel.attack_trainer(jakub)
+jakub.attack_trainer(marcel)
