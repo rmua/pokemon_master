@@ -15,7 +15,6 @@ class Trainer:
     if len(self.characters) > 6:
       self.characters = self.characters[0:6]
       self.characters_names = self.characters_names[0:6]
-    self.potion = ["strawberry", "bananna", "chocolatte", "cranberry", "apple", "mango"]
     self.active = None
     
   def __repr__(self):
@@ -23,6 +22,7 @@ class Trainer:
     
   def team_health(self):
     self.team_health = self.characters.get_current_health()
+    return self.team_health
     
   def activate_warrior(self):
     print("Activate a warrior from your list, {}! \n".format(self.name))
@@ -38,13 +38,23 @@ class Trainer:
           print("You must activate a warrior from your list. Try again! \n")
       except NameError:
         print("Use quotation marks \"\" for inputs")
-
+        
+  def is_ready(self):
+    if self.active.current_health > 0:
+      return True
+    else:
+      self.active = None
+      return False
           
   def attack_trainer(self, opponent):
-    if self.name == opponent.name:
-      print("Trainer {} can not battle himself!".format(self.name))
-      return
-    elif self.name != opponent.name:
-      self.active.attack(opponent.active)
-      print("Trainer {} brought it on trainer {}.\n".format(self.name, opponent.name))
-      return
+    if self.is_ready() == True:
+      if self.name == opponent.name:
+        print("Trainer {} can not battle himself!".format(self.name))
+        return
+      elif self.name != opponent.name:
+        self.active.attack(opponent.active)
+        print("Trainer {} brought it on trainer {}.\n".format(self.name, opponent.name))
+        return
+    else:
+      print("Your warrior is KO. Activate another warrior now!")
+      return self.activate_warrior()

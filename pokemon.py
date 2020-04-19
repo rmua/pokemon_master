@@ -7,20 +7,17 @@ april-2020, ruzicka_marcel@yahoo.com
 import random
 
 class Pokemon:
-  def __init__(self, name, level, type_of, max_health, current_health, knocked_out):
+  def __init__(self, name, level, type_of, max_health):
     self.name = name
     self.level = level
     self.type_of = type_of
     self.max_health = max_health
-    self.current_health = current_health
+    self.current_health = max_health
     self.hidden_points = 0
-    if knocked_out == True:
-      self.knocked_out = True
-    else:
-      self.knocked_out = False
+    self.knocked_out = False
       
   def __repr__(self):
-    return "Pokemon {}, with current health {}, level {}".format(self.name.upper(), self.current_health, self.level)  
+    return "Pokemon {}, with health {}, level {}".format(self.name.upper(), self.current_health, self.level)
     
   def attack(self, other):
     self.other = other
@@ -28,6 +25,7 @@ class Pokemon:
     if self.name == self.other.name:
       print("{} can not battle himself!".format(self.name))
       return
+    # conditions for attack based on type of pokemon:
     if self.type_of == "Fire" or "Poison" or "Electric":
       points = points * 1.3
     if self.type_of == "Ground":
@@ -40,26 +38,24 @@ class Pokemon:
       points = points * 0.6
     if points > self.other.current_health:
       points = self.other.current_health
+    # checking if the pokemons are able to attack or to be attacked
     if self.knocked_out == True:
       print("{} can not attack, because he is allready KO!\n".format(self.name))
       return
-    elif self.other.knocked_out == True:
+    elif other.knocked_out == True:
       print("{name} can not gain health from {other}, because {other} is allready KO!\n".format(name = self.name, other = other.name))
       return
-    
     self.current_health += points
-    
+    # formula for gaining hidden points to grew in level:
     if self.current_health > self.max_health:
       self.hidden_points += (self.current_health - self.max_health)
       if self.hidden_points > self.other.current_health:
         self.hidden_points += self.other.current_health
       self.current_health = self.max_health
-      
+
     self.level_up(self.hidden_points)
     self.other.lose_health(points)
-    #print("Level: " + str(self.level))
-    #print("Hidden points: " + str(self.hidden_points))
-    print("{name} has attacked {other} with {type} and got {points} points from him. {name}'s current health is {current_health}.\n".format(name = self.name, other = other.name, type = self.type_of.lower(), points = str(points), current_health = self.current_health))
+    print("{} has attacked {} with {} and got {:3.0f} points from him. {}'s current health is {:3.0f}.\n".format(self.name, other.name, self.type_of.lower(), points, other.name, self.current_health))
   
   def lose_health(self, points):
     self.current_health = self.current_health - points
