@@ -1,7 +1,7 @@
 """
 Script for the Pokemon Master game
 Author: Marcel Ruzicka
-april-2020, ruzicka_marcel@yahoo.com
+may-2020, ruzicka_marcel@yahoo.com
 """
 
 from pokemon import Pokemon
@@ -27,17 +27,17 @@ class Trainer:
   def activate_warrior(self):
     print("Activate a warrior from your list, {}! \n".format(self.name))
     while self.active == None:
-      try:
-        user_input = input("Type in a warrior: ")
-        for warrior in self.characters:
-          if warrior.name == user_input:
-            self.active = warrior
-            print("{} is now active for trainer {}\n".format(self.active.name.upper(), self.name.upper()))
-            break
-        else:
-          print("You must activate a warrior from your list. Try again! \n")
-      except NameError:
-        print("Use quotation marks \"\" for inputs")
+      #try: use with the except conditions below the block in Python2
+      user_input = input("Type in a warrior: ")
+      for warrior in self.characters:
+        if warrior.name == user_input:
+          self.active = warrior
+          print("{} is now active for trainer {}\n".format(self.active.name.upper(), self.name.upper()))
+          break
+      else:
+        print("You must activate a warrior from your list. Try again! \n")
+      #except NameError:
+        #print("Use quotation marks \"\" for inputs")
         
   def is_ready(self):
     if self.active.current_health > 0:

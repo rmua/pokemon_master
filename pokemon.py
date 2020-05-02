@@ -7,9 +7,9 @@ april-2020, ruzicka_marcel@yahoo.com
 import random
 
 class Pokemon:
-  def __init__(self, name, level, type_of, max_health):
+  def __init__(self, name, type_of, max_health):
     self.name = name
-    self.level = level
+    self.level = 1
     self.type_of = type_of
     self.max_health = max_health
     self.current_health = max_health
