@@ -22,9 +22,9 @@ class Pokemon:
   def attack(self, other):
     self.other = other
     points = random.randint(1, 81)
-    if self.name == self.other.name:
-      print("{} can not battle himself!".format(self.name))
-      return
+    #if self.name == self.other.name:
+      #print("{} can not battle himself!".format(self.name))
+      #return
     # conditions for attack based on type of pokemon:
     if self.type_of == "Fire" or "Poison" or "Electric":
       points = points * 1.3
