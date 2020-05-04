@@ -17,14 +17,14 @@ class Trainer:
       self.characters_names += character.name + "\n"
     #self.characters_names = [character.name for character in self.characters]
     self.active = None
+    self.team_health = sum([character.current_health for character in self.characters])
     
   def __repr__(self):
     return "{} have chosen theese warriors: \n{}\n".format(self.name, self.characters_names)
     
   def team_health(self):
     self.team_health = 0
-    for character in self.characters:
-      self.team_health += character.get_current_health()
+    self.team_health += [character.current_health for character in self.characters]
     return self.team_health
     
   def team_list(self):
@@ -56,6 +56,7 @@ class Trainer:
         return
       elif self.name != opponent.name:
         self.active.attack(opponent.active)
+        opponent.team_health()
       else: 
         print("{} is KO".format(self.active.name))
         self.team_list() # update the team list
