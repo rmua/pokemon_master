@@ -58,25 +58,40 @@ mankey = Pokemon("Mankey", "Fighting", 160)
 primeape = Pokemon("Primeape", "Fighting", 160)
 machoke = Pokemon("Machoke", "Fighting", 160)
 
+
 ######################
 ##### Instances  #####
 ######################
 
-#marcel = Trainer("Marcel", [squirtle, machoke, primeape, charmander, sandshrew, sandslash, raichu])
+
 marcel = Trainer("Marcel", [machoke, sandshrew, sandslash, arbok, ekans, meowth, mankey])
-print(marcel)
 
 jakub = Trainer("Jakub", [raticate, venusaur, squirtle, blastoise, mankey, caterpie, diglett])
-print(jakub)
+
+
+######################
+#####   Script   #####
+######################
+
+def main():
+  while len(marcel.characters) > 0 and len(jakub.characters) > 0:
+    marcel.attack_trainer(jakub)
+    jakub.attack_trainer(marcel)
+    if jakub.team_health() <= 0:
+      break
+      print("Trainer {} wins the game!\n".format(marcel.name))
+      print("GAME OVER")
+    elif marcel.team_health() <= 0:
+      break
+      print("Trainer {} wins the game!\n".format(jakub.name))
+      print("GAME OVER")
 
 ######################
 ##### Play below #####
 ######################
 
-marcel.activate_warrior()
-jakub.activate_warrior()
+if __name__ == "__main__":
+  marcel.activate_warrior()
+  jakub.activate_warrior()
+  main()
 
-marcel.attack_trainer(jakub)
-jakub.attack_trainer(marcel)
-#print(marcel.active.current_health)
-#print(jakub.active.current_health)

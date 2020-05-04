@@ -21,7 +21,7 @@ class Pokemon:
     
   def attack(self, other):
     self.other = other
-    points = random.randint(1, 81)
+    points = random.randint(1, 61)
     #if self.name == self.other.name:
       #print("{} can not battle himself!".format(self.name))
       #return
@@ -52,10 +52,9 @@ class Pokemon:
       if self.hidden_points > self.other.current_health:
         self.hidden_points += self.other.current_health
       self.current_health = self.max_health
-
-    self.level_up(self.hidden_points)
+    print("{} has attacked {} with {} and got {:3.0f} points from him. {}'s current health is {:3.0f}.\n".format(self.name, other.name, self.type_of.lower(), points, self.name, self.current_health))
     self.other.lose_health(points)
-    print("{} has attacked {} with {} and got {:3.0f} points from him. {}'s current health is {:3.0f}.\n".format(self.name, other.name, self.type_of.lower(), points, other.name, self.current_health))
+    self.level_up(self.hidden_points)
   
   def lose_health(self, points):
     self.current_health = self.current_health - points
@@ -70,7 +69,7 @@ class Pokemon:
       self.level += 1
       self.hidden_points = 0
       self.max_health = self.max_health + 100
-      print("{} grew up to level {}.".format(self.name, self.level))
+      print("{} grew up to level {}\n.".format(self.name, self.level))
     return self.max_health, self.level
     
   def get_current_health(self):
