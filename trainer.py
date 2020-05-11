@@ -56,12 +56,15 @@ class Trainer:
         return
       elif self.name != opponent.name:
         self.active.attack(opponent.active)
-        opponent.team_health()
-      else: 
-        print("{} is KO".format(self.active.name))
-        self.team_list() # update the team list
-        self.active = None
-        return self.activate_warrior()
+        #opponent.team_health()
+    else: 
+      print("{} is KO".format(self.active.name))
+      self.team_list() # update the team list
+      self.active = None
+      if self.characters:
+        self.activate_warrior()
+      else:
+        return
 
 
       

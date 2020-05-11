@@ -76,19 +76,16 @@ jakub = Trainer("Jakub", [raticate, venusaur, squirtle, blastoise, mankey, cater
 def main():
   marcel.activate_warrior()
   jakub.activate_warrior()
-  print("MArcel's team health is {}".format(marcel.team_health))
+  print("Marcel's team health is {}".format(marcel.team_health))
   print("Jakub's team health is {}".format(jakub.team_health))  
-  while marcel.team_health > 0 and jakub.team_health > 0:
+  while marcel.characters and jakub.characters:
     marcel.attack_trainer(jakub)
     jakub.attack_trainer(marcel)
-    if jakub.team_health <= 0:
-      break
-      print("Trainer {} wins the game!\n".format(marcel.name))
-      print("GAME OVER")
-    elif marcel.team_health <= 0:
-      break
-      print("Trainer {} wins the game!\n".format(jakub.name))
-      print("GAME OVER")
+  if marcel.characters:
+    print("Trainer {} wins the game!\n".format(marcel.name))
+  elif jakub.characters:
+    print("Trainer {} wins the game!\n".format(jakub.name))
+  print("GAME OVER")
 
 ######################
 ##### Play below #####
